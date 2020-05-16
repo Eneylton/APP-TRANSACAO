@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/service';
 
 
@@ -22,6 +22,7 @@ export class CadFluxoPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public alertCtrl: AlertController,
+              public toastyCrtl: ToastController,
               public server: ServiceProvider) {
                 
 
@@ -42,13 +43,22 @@ export class CadFluxoPage {
       let total1 = 0;
       let total2 = 0
       for(let i =0; i < data.result.length; i++){
-        if(data.result[i]["status"] == 2){
+        if(data.result[i]["status"] == 2 ){
 
           total1 += parseFloat(data.result[i]["valor"]);
-        }else {
+
+        }else if ( data.result[i]["status"] == 4) {
+          
+          total1 += parseFloat(data.result[i]["valor"]);
+         
+        }else if(data.result[i]["status"] == 5){
+          total2 += parseFloat(data.result[i]["valor"]);
+        }else{
 
           total2 += parseFloat(data.result[i]["valor"]);
+
         }
+
       }
       this.total1 = total1;
       this.total2 = total2;
@@ -63,18 +73,28 @@ export class CadFluxoPage {
  
   cadastrar(){
 
-    let body = {
-      valor:this.valor,
-      trasacao_id:this.trasacao_id,
-      crud:'adicionar'
+    if(this.trasacao_id === '1' && this.valor >= this.soma){
+
+      const toast = this.toastyCrtl.create({
+        message: 'Valor Acima do limite !!!!',
+        duration: 3000
+      });
+      toast.present();
+    }else{
+      let body = {
+        valor:this.valor,
+        trasacao_id:this.trasacao_id,
+        crud:'adicionar'
+  
+      }
+  
+      this.server.postData(body,'Transacao.php').subscribe(data =>{
+       
+        this.showInsertOk();
+  
+      })
 
     }
-
-    this.server.postData(body,'Transacao.php').subscribe(data =>{
-     
-      this.showInsertOk();
-
-    })
 
   }
 

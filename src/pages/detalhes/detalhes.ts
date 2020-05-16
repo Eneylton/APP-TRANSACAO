@@ -37,10 +37,10 @@ export class DetalhesPage {
       let total1 = 0;
       let total2 = 0
       for(let i =0; i < data.result.length; i++){
-        if(data.result[i]["status"] == 2){
+        if(data.result[i]["status"] == 2 ){
 
           total1 += parseFloat(data.result[i]["valor"]);
-        }else {
+        }else  {
 
           total2 += parseFloat(data.result[i]["valor"]);
         }

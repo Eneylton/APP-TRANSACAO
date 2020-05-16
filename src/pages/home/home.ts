@@ -69,13 +69,22 @@ export class HomePage {
       let total1 = 0;
       let total2 = 0
       for(let i =0; i < data.result.length; i++){
-        if(data.result[i]["status"] == 2){
+        if(data.result[i]["status"] == 2 ){
 
           total1 += parseFloat(data.result[i]["valor"]);
-        }else {
+
+        }else if ( data.result[i]["status"] == 4) {
+          
+          total1 += parseFloat(data.result[i]["valor"]);
+         
+        }else if(data.result[i]["status"] == 5){
+          total2 += parseFloat(data.result[i]["valor"]);
+        }else{
 
           total2 += parseFloat(data.result[i]["valor"]);
+
         }
+
       }
       this.total1 = total1;
       this.total2 = total2;
@@ -137,8 +146,8 @@ export class HomePage {
         datasets: [
           {
             data: total,
-            backgroundColor: ['#00ff1f', '#ff0000', '#0b7cff'],
-            hoverBackgroundColor: ['#00ff1f', '#ff0000', '#0b7cff']
+            backgroundColor: ['#00ff1f', '#0b7cff', '#ff0000','#d3ec00','#ec00ae'],
+            hoverBackgroundColor: ['#00ff1f', '#0b7cff', '#ff0000','#d3ec00','#ec00ae']
           }]
       };
   

@@ -2,8 +2,9 @@
   <ion-navbar [color]="soma <'0' ? 'vermelho' : 'laranja'">
     <ion-label style="text-align:right; font-size: 18px;" class="tamanho" [color]="soma < '0' ? 'laranja' : 'light'">
       {{ soma | currency: 'BRL' }}</ion-label>
-    <button ion-button menuToggle>
+    <button ion-button menuToggle> 
       <ion-icon name="menu"></ion-icon>
+      Movimentações
     </button>
 
 
@@ -31,7 +32,10 @@
     <ion-item *ngFor="let item of fluxos">
 
       <ion-icon name="square" item-start
-        [color]="item.status == '1' ? 'danger' : item.status == '3' ? 'primary' : 'secondary'"></ion-icon>
+        [color]="item.status == '1' ? 'laranja' 
+                                               : item.status == '3' ? 'lilas' 
+                                               : item.status == '5' ? 'danger' 
+                                               : item.status  == '4' ? 'primary' : 'secondary'"></ion-icon>
 
       <span item-start>{{item.descricao}}</span>
       <span item-end>{{item.total | currency : 'BRL'}}</span>

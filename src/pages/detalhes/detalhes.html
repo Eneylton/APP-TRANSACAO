@@ -17,7 +17,11 @@
   <ion-list>
     <ion-item *ngFor="let item of detalhes">
       <ion-icon style="font-size: 18px;" name="square" item-start 
-                [color]="item.status == '1' ? 'danger': item.status == '2' ? 'secondary' : 'primary'"></ion-icon>
+                [color]="item.status == '1' ? 'laranja'
+                                        : item.status == '3' ? 'lilas' 
+                                        : item.status == '5' ? 'danger' 
+                                        : item.status == '4' ? 'primary' 
+                                        : 'secondary'"></ion-icon>
 
       <span>{{item.descricao}} </span>
       <span style="font-size: 13px;" item-end>{{item.valor | currency: 'BRL'}} </span>
