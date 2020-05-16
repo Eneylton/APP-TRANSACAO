@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar color="laranja">
+    <ion-title>Transações</ion-title>
+    <ion-buttons start>
+      <button ion-button icon only (click)="cadastrar()">
+          
+        <ion-icon color="#019386" name="checkmark"></ion-icon>
+
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="margin-top: 30px;">
+  <ion-item>
+
+    <span item-start>Total parcial</span>
+    <ion-badge item-end [color]="soma < '0' ? 'danger' : 'primary'">{{ soma | currency: 'BRL'}}</ion-badge>
+
+  </ion-item>
+
+  <ion-list>
+    <ion-item>
+      <ion-label floating>R$ Valor</ion-label>
+      <ion-input type="text"  [(ngModel)]="valor" [brmasker]="{money: true, decimalCaracter: '.', decimal: '2'}"  ></ion-input>
+    </ion-item>
+
+
+    <ion-list radio-group [(ngModel)]="trasacao_id">
+
+      <div style="margin-left:7px; margin-top: 20px; padding: 10px; text-align: center; background-color: #a8a8a85d;">Tansações</div>
+      
+        <ion-item>
+          <ion-label>Saque</ion-label>
+          <ion-radio color="danger" value="1"></ion-radio>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label>Depósito</ion-label>
+          <ion-radio color="secondary" value="2"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Transferência</ion-label>
+          <ion-radio color="primary" value="3"></ion-radio>
+        </ion-item>
+
+        
+      
+      </ion-list>
+
+  </ion-list>
+
+</ion-content>

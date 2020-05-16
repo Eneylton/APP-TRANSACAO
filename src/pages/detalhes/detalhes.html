@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color="laranja">
+    
+    <ion-label style="text-align:right; font-size: 18px;" class="tamanho" [color]="soma < '0' ? 'laranja' : 'light'">
+      {{ soma | currency: 'BRL' }}</ion-label>
+
+      <button ion-button menuToggle>
+        <ion-icon color="dark" name="menu"></ion-icon> 
+        <span style="color: rgb(41, 40, 40);">Detalhes</span>
+      </button>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+
+  <ion-list>
+    <ion-item *ngFor="let item of detalhes">
+      <ion-icon style="font-size: 18px;" name="square" item-start 
+                [color]="item.status == '1' ? 'danger': item.status == '2' ? 'secondary' : 'primary'"></ion-icon>
+
+      <span>{{item.descricao}} </span>
+      <span style="font-size: 13px;" item-end>{{item.valor | currency: 'BRL'}} </span>
+      
+      <p>
+
+        <span style="font-size: 12px;">{{item.data | date: 'dd/MM/yyyy HH:mm'}} </span>
+
+      </p>
+
+    </ion-item>
+  </ion-list>
+
+</ion-content>
